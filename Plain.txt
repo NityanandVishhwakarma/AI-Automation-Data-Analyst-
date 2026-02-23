@@ -1,0 +1,14 @@
+ai_data_analyst/
+│
+├── backend/
+│   ├── main.py          # FastAPI server yahan banega
+│   ├── ai_agent.py      # LangGraph aur LLM ka logic
+│   └── database.py      # MySQL connection aur queries
+│
+├── frontend/
+│   └── app.py           # Streamlit UI yahan banega
+│
+├── data/
+│   └── raw_data.csv     # Aapka raw CSV data yahan rahega
+│
+└── requirements.txt     # Sabhi Python libraries ki list

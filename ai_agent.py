@@ -2,11 +2,9 @@ import os
 from langchain_community.utilities import SQLDatabase
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.agent_toolkits import create_sql_agent
-from langchain_community.tools import DuckDuckGoSearchRun
 
 # 1. Apni Gemini API Key yahan daalein
 os.environ["GOOGLE_API_KEY"] = "AIzaSyCbpIY4YjmtRDqZyw4RWE5kHDXtg_NBfuU"
-web_search = DuckDuckGoSearchRun()
 
 # 2. Database Connection (Apna password zaroor update karein)
 MYSQL_URL = "mysql+pymysql://root:yes@localhost:3306/exam_analytics"
@@ -23,8 +21,7 @@ agent_executor = create_sql_agent(
     llm=llm, 
     db=db, 
     agent_type="zero-shot-react-description", 
-    verbose=True,
-    extra_tools=[web_search]  # <-- 3. Yeh Magic Line add karein!
+    verbose=True
 )
 
 # Purane ask_data_analyst function ko is se replace karein

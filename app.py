@@ -6,7 +6,7 @@ from ai_agent import ask_data_analyst
 
 # --- Database Connection for Graphs ---
 # Apna password yahan theek karein agar zaroorat ho
-MYSQL_URL = "mysql+pymysql://root:yes@localhost:3306/exam_analytics"
+MYSQL_URL = "sqlite:///historical_trends.db"
 engine = create_engine(MYSQL_URL)
 
 # --- Page Configuration ---

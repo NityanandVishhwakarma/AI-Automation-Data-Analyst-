@@ -7,7 +7,7 @@ from langchain_community.agent_toolkits import create_sql_agent
 os.environ["GOOGLE_API_KEY"] = "AIzaSyCbpIY4YjmtRDqZyw4RWE5kHDXtg_NBfuU"
 
 # 2. Database Connection (Apna password zaroor update karein)
-MYSQL_URL = "mysql+pymysql://root:yes@localhost:3306/exam_analytics"
+MYSQL_URL = "sqlite:///historical_trends.db"
 
 # LangChain ko database connect karne ke liye
 db = SQLDatabase.from_uri(MYSQL_URL)

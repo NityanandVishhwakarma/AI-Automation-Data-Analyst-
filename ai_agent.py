@@ -39,9 +39,13 @@ def generate_pdf_report(content):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", 'B', 16)
-    pdf.cell(200, 10, txt="UPSC STRATEGIC REPORT", ln=True, align='C')
+    pdf.cell(200, 10, txt="UPSC STRATEGIC ANALYSIS", ln=True, align='C')
     pdf.ln(10)
     pdf.set_font("Arial", size=11)
+    
+    # Cleaning text for PDF compatibility
     clean_text = content.encode('latin-1', 'replace').decode('latin-1')
     pdf.multi_cell(0, 10, txt=clean_text)
-    return pdf.output(dest='S').encode('latin-1')
+    
+    # FIX: fpdf2 mein dest='S' ki zaroorat nahi hoti
+    return pdf.output()

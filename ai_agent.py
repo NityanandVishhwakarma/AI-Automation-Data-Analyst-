@@ -1,10 +1,11 @@
+import streamlit as st
 import os
 from langchain_community.utilities import SQLDatabase
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.agent_toolkits import create_sql_agent
 
-# 1. Apni Gemini API Key yahan daalein
-os.environ["GOOGLE_API_KEY"] = "AIzaSyCbpIY4YjmtRDqZyw4RWE5kHDXtg_NBfuU"
+# Ye line ab Streamlit ke hidden secrets se key legi
+MY_GEMINI_KEY = st.secrets["GEMINI_API_KEY"]
 
 # 2. Database Connection (Apna password zaroor update karein)
 MYSQL_URL = "sqlite:///historical_trends.db"

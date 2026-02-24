@@ -48,18 +48,17 @@ with col1:
             st.markdown(answer)
             
             # --- Automated Executive PDF Generator ---
-            if "### 📊 Executive Brief" in answer:
-                # PDF ke liye sirf analysis wala part extract karna
-                brief_content = answer.split("### 📊 Executive Brief")[-1]
-                pdf_bytes = generate_pdf_report(brief_content)
-                
-                st.download_button(
-                    label="📥 Download Strategic Briefing (PDF)",
-                    data=pdf_bytes,
-                    file_name="UPSC_Strategic_Analysis.pdf",
-                    mime="application/pdf",
-                    key=f"dl_{len(st.session_state.messages)}"
-                )
+           if "### 📊 Executive Brief" in answer:
+    brief_content = answer.split("---")[-1]
+    pdf_bytes = generate_pdf_report(brief_content)
+    
+    st.download_button(
+        label="📥 Download Strategic Briefing (PDF)",
+        data=pdf_bytes, # pdf_bytes ab seedha use ho sakta hai
+        file_name="UPSC_Strategic_Analysis.pdf",
+        mime="application/pdf",
+        key=f"dl_{len(st.session_state.messages)}"
+    )
 
         st.session_state.messages.append({"role": "assistant", "content": answer})
 

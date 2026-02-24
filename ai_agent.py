@@ -43,9 +43,12 @@ def generate_pdf_report(content):
     pdf.ln(10)
     pdf.set_font("Arial", size=11)
     
-    # Cleaning text for PDF compatibility
+    # Cleaning text
     clean_text = content.encode('latin-1', 'replace').decode('latin-1')
     pdf.multi_cell(0, 10, txt=clean_text)
     
-    # FIX: fpdf2 mein dest='S' ki zaroorat nahi hoti
-    return pdf.output()
+    # FIX: Output ko bytes mein convert karna zaroori hai
+    pdf_output = pdf.output()
+    if isinstance(pdf_output, str):
+        return pdf_output.encode('latin-1')
+    return bytes(pdf_output)

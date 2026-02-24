@@ -7,7 +7,7 @@ from fpdf import FPDF
 # 1. API Configuration
 gemini_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=gemini_key)
-model = genai.GenerativeModel('gemini-2.0-flash')
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 # 2. Database Connection
 # Ensure 'historical_trends.db' is in your GitHub root folder

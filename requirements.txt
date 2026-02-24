@@ -3,7 +3,7 @@ pandas
 plotly
 sqlalchemy
 pymysql
+google-generativeai
+fpdf2
 langchain
 langchain-google-genai
-langchain-community
-duckduckgo-search

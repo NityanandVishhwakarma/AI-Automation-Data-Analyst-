@@ -1,11 +1,13 @@
 import streamlit as st
 import os
+import google.generativeai as genai
 from langchain_community.utilities import SQLDatabase
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.agent_toolkits import create_sql_agent
 
-# Ye line ab Streamlit ke hidden secrets se key legi
-MY_GEMINI_KEY = st.secrets["GEMINI_API_KEY"]
+# Ye line Streamlit Secrets se key uthayegi, code mein dikhegi nahi
+gemini_key = st.secrets["GEMINI_API_KEY"]
+genai.configure(api_key=gemini_key)
 
 # 2. Database Connection (Apna password zaroor update karein)
 MYSQL_URL = "sqlite:///historical_trends.db"

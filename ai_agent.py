@@ -16,7 +16,7 @@ MYSQL_URL = "sqlite:///historical_trends.db"
 db = SQLDatabase.from_uri(MYSQL_URL)
 
 # 3. Initialize the AI Model (Gemini)
-llm = ChatGoogleGenerativeAI(model="deep-research-pro-preview", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0)
 
 # 4. Create the SQL AI Agent
 # 'verbose=True' rakhne se hum terminal me dekh payenge ki AI kya soch raha hai aur kaunsi SQL query likh raha hai

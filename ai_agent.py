@@ -6,6 +6,25 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.agent_toolkits import create_sql_agent
 from fpdf import FPDF
 import io
+from langchain_community.vectorstores import Chroma
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+
+# PDF data ko process karne ke liye embeddings
+embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+
+# 'data/pdfs' folder mein rakhi files ko read karne ke liye vector store
+# Note: Iske liye aapko 'data' folder banana hoga
+vector_db = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
+
+def ask_hybrid_analyst(question):
+    # Pehle SQL se data nikalo
+    sql_response = ask_data_analyst(question)
+    
+    # Phir PDFs mein se relevant context dhoondho
+    pdf_context = vector_db.similarity_search(question, k=2)
+    
+    # Dono ko combine karke final jawab do
+    return f"{sql_response}\n\n**Additional Context from PDF Reports:**\n{pdf_context[0].page_content}"
 
 # 1. Configuration & Key Setup
 gemini_key = st.secrets["GEMINI_API_KEY"]

@@ -7,3 +7,6 @@ google-generativeai
 fpdf2
 langchain
 langchain-google-genai
+langchain-community
+chromadb
+pypdf

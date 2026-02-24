@@ -5,8 +5,7 @@ sqlalchemy
 pymysql
 google-generativeai
 fpdf2
-langchain>=0.1.0
+langchain
 langchain-google-genai
 langchain-community
-langchain-chroma
 pypdf

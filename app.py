@@ -36,29 +36,29 @@ with col1:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # Chat input
-    if prompt := st.chat_input("E.g. Analyze the trend of vacancies and suggest a strategy?"):
+   # Chat input
+    if prompt := st.chat_input("E.g. Compare 2023 vacancies with 2022?"):
         st.chat_message("user").markdown(prompt)
         st.session_state.messages.append({"role": "user", "content": prompt})
 
-        with st.spinner("Multi-Agent team is analyzing SQL trends and PDF reports..."):
+        with st.spinner("Agents collaborating..."):
             answer = ask_data_analyst(prompt)
 
         with st.chat_message("assistant"):
             st.markdown(answer)
             
-            # --- Automated Executive PDF Generator ---
-           if "### 📊 Executive Brief" in answer:
-    brief_content = answer.split("---")[-1]
-    pdf_bytes = generate_pdf_report(brief_content)
-    
-    st.download_button(
-        label="📥 Download Strategic Briefing (PDF)",
-        data=pdf_bytes, # pdf_bytes ab seedha use ho sakta hai
-        file_name="UPSC_Strategic_Analysis.pdf",
-        mime="application/pdf",
-        key=f"dl_{len(st.session_state.messages)}"
-    )
+            # --- YAHAN DHAYAN DEIN: Indentation check karein ---
+            if "### 📊 Executive Brief" in answer:
+                brief_content = answer.split("---")[-1]
+                pdf_bytes = generate_pdf_report(brief_content)
+                
+                st.download_button(
+                    label="📥 Download Strategic Briefing (PDF)",
+                    data=pdf_bytes,
+                    file_name="UPSC_Strategic_Analysis.pdf",
+                    mime="application/pdf",
+                    key=f"dl_{len(st.session_state.messages)}"
+                )
 
         st.session_state.messages.append({"role": "assistant", "content": answer})
 
